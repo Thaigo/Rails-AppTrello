@@ -1,0 +1,102 @@
+<!--
+      <tr>
+        <td><%= task.content %></td>
+        <td><%= task.state %></td>
+        <td><%= link_to 'Show', task %></td>
+        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+
+        <% if task.state == 'doing' %>
+
+          <td><%= link_to 'Mark as to_do', change_task_path(task, state:"to_do"), method: :put %></td>
+          <td><%= link_to 'Mark as Done', change_task_path(task, state:"done"), method: :put %></td>
+        
+        <% else %>
+
+          <td><%= link_to 'Mark as Doing', change_task_path(task, state:"doing"), method: :put %></td>
+
+        <% end %>
+
+      </tr>
+-->
+
+      <div class = "panel panel-info">
+        <div class = "panel-heading">
+          <%= link_to edit_task_path(task) do %>
+            Created: <%= time_ago_in_words(task.created_at) %> ago
+          <% end %>
+        </div>
+        
+        <div class = "panel-body">
+          <div class="row">        
+              <% if task.state == 'done'%>  
+                <% if task.completed? %>
+                  <div class="col-md-4">
+                    <%= link_to complete_task_path(task), method: :patch do %> 
+                      <i style="opacity: 0.4" class="fa fa-check" ></i>
+                    <% end %> 
+                  </div> 
+                  <div>
+                    <p style="opacity: 0.4" ><strike><%= task.content %> </strike></p>
+                  </div>
+                  
+                  <div class="col-md-4">
+                    <%= link_to task_path(task), method: :delete, data: { confirm: "voce tem certeza?"} do %>
+                      <i class="fa fa-trash"></i>	
+                    <% end %>  
+                  </div>
+                <% else %>
+                  <div class="col-md-4">
+                    <%= link_to complete_task_path(task), method: :patch do %> 
+                      <i class="fa fa-check" ></i>
+                    <% end %> 
+                  </div> 
+                  <div>
+                    <p><%= task.content %></p>
+                  </div>
+                  
+                  <div class="col-md-4">
+                    <%= link_to task_path(task), method: :delete, data: { confirm: "voce tem certeza?"} do %>
+                      <i class="fa fa-trash"></i>	
+                    <% end %>  
+                  </div>
+                <% end %>
+              <% else %>
+                <div class = "panel-body">
+                  <%= task.content %>
+                </div>
+              <% end %>
+          </div> 
+        </div>
+
+        <div class = "panel-footer">
+          <div class = "btn-group btn-group-justified">
+
+            <% if task.state == 'doing' %>
+
+              <%= link_to  change_task_path(task, state:"to_do"), method: :put, class: 'btn btn-info btn-block' do %>
+                <i class="fa fa-arrow-left"></i>
+              <% end %>
+
+              <%= link_to  change_task_path(task, state:"done"), method: :put, class: 'btn btn-info btn-block' do %>
+                <i class="fa fa-arrow-right"></i>
+              <% end %>
+
+<!--
+              <%= link_to '<i class="fa fa-arrow-left"></i>'.html_safe, change_task_path(task, state:"to_do"), method: :put, class: 'btn btn-info btn-block' %>
+              <%= link_to '<i class="fa fa-arrow-right"></i>'.html_safe, change_task_path(task, state:"done"), method: :put, class: 'btn btn-info btn-block' %>
+-->            
+            <% elsif task.state == 'done' %>
+              
+             <%= link_to '<i class="fa fa-arrow-left"></i>'.html_safe, change_task_path(task, state:"doing"), method: :put, class: 'btn btn-info btn-block' %>
+
+            <% else %>
+
+              <%= link_to '<i class="fa fa-arrow-right"></i>'.html_safe, change_task_path(task, state:"doing"), method: :put, class: 'btn btn-info btn-block' %>
+            
+            <% end %>
+
+          </div>
+        </div>
+      </div>   

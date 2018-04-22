@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+
+<%= link_to 'New Task', new_task_path %>
+
+
+<div class="row">
+  <div class="col-md-4">
+    <h1>Aberto</h1>
+      <%= render @to_do %>
+  </div>
+
+  <div class="col-md-4">
+    <h1>Em Analise</h1>
+      <%= render @doing %>
+  </div>
+
+  <div class="col-md-4">
+    <h1>Concluído</h1>
+      <%= render @done %>      
+  </div>
+
+</div>
+
+
+
+
