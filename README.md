@@ -1,24 +1,20 @@
-# README
+# Ruby on Rails - Clone Trello
+=========================================
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Summary
+-------
+Tutorial para o Blog
 
-Things you may want to cover:
+Generated project characteristics
+-------------------------
 
-* Ruby version
+* Bootstrap
+* Font awesome
 
-* System dependencies
+Prerequisites
+-------------
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Rails 5
+- bundle install
+- rails db:migrate
+- rails s
